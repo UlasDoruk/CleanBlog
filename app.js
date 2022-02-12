@@ -8,7 +8,7 @@ app.set('view engine', 'ejs');
  app.use(express.static('public')); 
 
 
-app.get('/', (req, res) => {
+app.get('/index', (req, res) => {
   /* res.sendFile(resolve(__dirname,"public/index.html")) */
   res.render('index.ejs');
 });
