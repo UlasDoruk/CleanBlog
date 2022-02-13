@@ -20,7 +20,7 @@ Photo.create({
   description: 'Photo_2 desc',
 });
 //Eklediğimiz verileri okuma
-Photo.find({}, (err, data) => {
+/* Photo.find({}, (err, data) => {
   console.log(data);
 });
  //Collection veri update
@@ -37,7 +37,7 @@ Photo.findByIdAndUpdate(
   (err, data) => {
     console.log(`Updated data`);
   }
-);
+); */
 //Collectiondan veri silme
 /* const id_1 = '6209379abacf938c9ea7a982';
 Photo.findByIdAndDelete(id,(err,data)=>{
