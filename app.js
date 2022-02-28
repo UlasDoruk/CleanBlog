@@ -1,5 +1,5 @@
 const express = require('express');
-const mongoose = require("mongoose")
+const mongoose = require('mongoose');
 const ejs = require('ejs');
 const path = require('path');
 const app = express();
@@ -15,11 +15,18 @@ app.use(express.json());
 
 //Route
 app.get('/index', async (req, res) => {
-  const photo = await Photo.find({})
+  const photos = await Photo.find({});
   /* res.sendFile(resolve(__dirname,"public/index.html")) */
-  res.render('index',{
-    photo
+  res.render('index', {
+    photos,
   });
+});
+
+app.get('/photos/:id', async (req, res) => {
+  const photo = await Photo.findById(req.params.id)
+  res.render('photo',{
+    photo
+  })
 });
 
 app.get('/about', (req, res) => {
@@ -29,8 +36,8 @@ app.get('/add_post', (req, res) => {
   res.render('add_post');
 });
 
-app.post('/photos', async (req, res) => {
-  await Photo.create(req.body)
+app.post('/photo', async (req, res) => {
+  await Photo.create(req.body);
   res.redirect('/index');
 });
 

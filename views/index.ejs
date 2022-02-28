@@ -6,7 +6,7 @@
 
 
   <!-- Page Header -->
-  <header class="masthead" style="background-image: url('img/home-bg.jpg')">
+  <header class="masthead" style="background-image: url('/img/home-bg.jpg')">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
@@ -23,15 +23,15 @@
   <!-- Main Content -->
   <div class="container">
     <div class="row">
-      <% for(let i=0;i< photo.length;i++) {%>
+      <% for(let i=0;i< photos.length;i++) {%>
       <div class="col-lg-8 col-md-10 mx-auto">
         <div class="post-preview">
-          <a href="post.html">
+          <a href="/photos/<%= photos[i]._id %>">
             <h2 class="post-title">
-              <%= photo[i].title %>
+              <%= photos[i].title %>
             </h2>
             <h3 class="post-subtitle">
-              <%= photo[i].description %>
+              <%= photos[i].description %>
             </h3>
           </a>
           <p class="post-meta">Posted by
