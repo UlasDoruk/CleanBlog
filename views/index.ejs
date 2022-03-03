@@ -26,7 +26,10 @@
       <% for(let i=0;i< photos.length;i++) {%>
       <div class="col-lg-8 col-md-10 mx-auto">
         <div class="post-preview">
-          <a href="/photos/<%= photos[i]._id %>">
+           <img src="<%= photos[i].image %>" alt="Image" class="img-fluid tm-catalog-item-img">
+          <a href="/photos/<%= photos[i]._id %>" class="position-absolute tm-img-overlay">
+          <i class="fas fa-play tm-overlay-icon"></i>
+          </a>
             <h2 class="post-title">
               <%= photos[i].title %>
             </h2>
@@ -34,14 +37,6 @@
               <%= photos[i].description %>
             </h3>
           </a>
-          <p class="post-meta">Posted by
-            <a href="#">Start Bootstrap</a>
-            on February 14, 2022</p>
-
-        <!-- Pager -->
-        <div class="clearfix">
-          <a class="btn btn-primary float-right" href="#">Older Posts &rarr;</a>
-        </div>
       </div>
     </div>
   </div>

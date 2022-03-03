@@ -27,14 +27,18 @@
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
-          <h2 class="section-heading"><%= photo.title %></h2>
+          <img class="img-fluid" src="<%= photo.image %>" ></img>
+          <br>
+          <%= photo.title %>
+          <br>
           <%= photo.description %>
           <br>
           <%= photo.Createdate %>
           
-          <a href="#">
-            <img class="img-fluid" src="img/post-sample-image.jpg" alt="">
-          </a>
+          <div class="clearfix">
+          <a href="/photos/edit/<%= photo._id%>" type="submit" class="btn btn-primary" id="sendMessageButton">Update</a>
+          <a href="/photos/edit/<%= photo._id%>" type="submit" class="btn btn-primary" id="sendMessageButton">Delete</a>
+        </div>
           
           
           <p>Placeholder text by

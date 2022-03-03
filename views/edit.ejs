@@ -5,14 +5,15 @@
 <%- include('partials/_navigation') -%>
 
   <!-- Page Header -->
-  <header class="masthead" style="background-image: url('img/contact-bg.jpg')">
+  <header class="masthead" style="background-image: url('/img/contact-bg.jpg')">
     <div class="overlay"></div>
     <div class="container">
       <div class="row">
         <div class="col-lg-8 col-md-10 mx-auto">
           <div class="page-heading">
-            <h1>Add Photo</h1>
-
+            <h1>Edit The Photo</h1>
+            <br>
+            <h2><%= photo.title %></h2>
           </div>
         </div>
       </div>
@@ -23,11 +24,11 @@
   <div class="container">
     <div class="row">
       <div class="col-lg-8 col-md-10 mx-auto">
-        <form method="POST" action="/photos"  encType="multipart/form-data" novalidate>
+        <form method="POST" action="/photos/<%= photo._id %>?_method=PUT"  encType="multipart/form-data" novalidate>
           <div class="control-group">
             <div class="form-group floating-label-form-group controls">
               <label>Post Title</label>
-              <input type="text" class="form-control" placeholder="Photo name" name="title" required >
+              <input type="text" class="form-control" placeholder="Title" value="<%= photo.title %>" name="title" required >
               <p class="help-block text-danger"></p>
             </div>
           </div>
@@ -35,15 +36,13 @@
             <div class="form-group floating-label-form-group controls">
               <label>Post Detail</label>
               <textarea rows="5" class="form-control" placeholder="Description" name="description" required ></textarea>
-              <div class="form-group">
-                <input type="file" class="form-control-file" name="image" >
-              </div>
               <p class="help-block text-danger"></p>
             </div>
           </div>
           <br>
           <div id="success"></div>
-          <button type="submit" class="btn btn-primary" id="sendMessageButton">Send</button>
+          <button type="submit" class="btn btn-primary" id="sendMessageButton">Update</button>
+          <button type="submit" class="btn btn-primary" id="sendMessageButton">Delete</button>
         </form>
       </div>
     </div>
@@ -54,15 +53,15 @@
     <%- include('partials/_footer') -%>
 
   <!-- Bootstrap core JavaScript -->
-  <script src="vendor/jquery/jquery.min.js"></script>
-  <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
   <!-- Contact Form JavaScript -->
-  <script src="js/jqBootstrapValidation.js"></script>
-  <script src="js/contact_me.js"></script>
+  <script src="/js/jqBootstrapValidation.js"></script>
+  <script src="/js/contact_me.js"></script>
 
   <!-- Custom scripts for this template -->
-  <script src="js/clean-blog.min.js"></script>
+  <script src="/js/clean-blog.min.js"></script>
 
 </body>
 

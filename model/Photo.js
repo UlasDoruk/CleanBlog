@@ -1,10 +1,9 @@
 //Photo.js dosyasını modul yaptık
-
 const mongoose = require('mongoose');
-
 const Schema = mongoose.Schema;
 
-const PhotoSchema = {
+
+const PhotoSchema = new Schema ({
   title: String,
   description: String,
   image: String,
@@ -12,12 +11,8 @@ const PhotoSchema = {
     type: Date,
     default: Date.now,
   },
-};
-
-mongoose.connect('mongodb://localhost/cleanblog-test-db', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
 });
+
 
 const Photo = mongoose.model('Photo', PhotoSchema);
 
