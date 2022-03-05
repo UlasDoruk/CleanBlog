@@ -13,6 +13,7 @@ const Photo = require('./model/Photo');
 mongoose.connect('mongodb://localhost/cleanblog-test-db', {
   useNewUrlParser: true,
   useUnifiedTopology: true,
+  /* useFindAndModify : false, */
 });
 
 app.set('view engine', 'ejs');
@@ -22,9 +23,10 @@ app.use(express.static('public'));
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(fileUpload());
-app.use(methodOverride('_method'));
+app.use(methodOverride('_method',{
+  methods:['POST','GET']
+}))
 
-//Route
 app.get('/index', async (req, res) => {
   const photos = await Photo.find({});
   res.render('index', {
@@ -47,19 +49,19 @@ app.get('/add_post', (req, res) => {
 });
 
 app.post('/photos', async (req, res) => {
-  const uploadDir = 'public/uploads';
+  const uploadDir = 'public\\uploads';
 
   if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir);
   }
 
   let uploadeImage = req.files.image;
-  let uploadPath = __dirname + '/../public/uploads/' + uploadeImage.name;
+  let uploadPath = __dirname +"\\public\\uploads\\" + uploadeImage.name;
 
   uploadeImage.mv(uploadPath, async () => {
     await Photo.create({
       ...req.body,
-      image: '/uploads/' + uploadeImage.name,
+      image: '\\uploads\\' + uploadeImage.name,
     });
     res.redirect('/index');
   });
@@ -74,12 +76,19 @@ app.get('/photos/edit/:id', async (req, res) => {
 
 app.put('/photos/:id', async (req, res) => {
   const photo = await Photo.findOne({ _id: req.params.id });
-  photo.title = req.body.title
-  photo.description = req.body.description
-  photo.save()
-  res.redirect(`/photos/${req.params.id}`)
-  });
+  photo.title = req.body.title;
+  photo.description = req.body.description;
+  photo.save();
+  res.redirect(`/photos/${req.params.id}`);
+});
 
+app.delete('/photos/:id', async (req, res) => {
+  const photo = await Photo.findOne({ _id: req.params.id });
+  let deleteImage = __dirname + "\\..\\public\\" + photo.image;
+  fs.unlinkSync(deleteImage,);
+  await Photo.findByIdAndRemove(req.params.id);
+  res.redirect('/index');
+});
 
 port = 3000;
 

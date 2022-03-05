@@ -37,7 +37,8 @@
           
           <div class="clearfix">
           <a href="/photos/edit/<%= photo._id%>" type="submit" class="btn btn-primary" id="sendMessageButton">Update</a>
-          <a href="/photos/edit/<%= photo._id%>" type="submit" class="btn btn-primary" id="sendMessageButton">Delete</a>
+          <a href="/photos/<%= photo._id %>?_method=DELETE" type="submit" class="btn btn-primary" id="sendMessageButton"
+            onclick="return confirm('Delete the Image ?')">Delete</a>
         </div>
           
           
