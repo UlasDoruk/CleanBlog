@@ -24,6 +24,7 @@ app.use(fileUpload());
 app.use(methodOverride('_method',{
   methods:['POST','GET']
 }))
+// photoController ROUTE
 
 app.get('/index',photoController.getAllPhotos);
 app.get('/photos/:id', photoController.getPhoto);
@@ -31,6 +32,7 @@ app.post('/photos', photoController.createPhoto);
 app.put('/photos/:id', photoController.updatePhoto);
 app.delete('/photos/:id', photoController.deletePhoto);
 
+// pageController ROUTE
 app.get('/about',pageController.getAboutPage);
 app.get('/add_post',pageController.getAddPhoto);
 app.get('/photos/edit/:id',pageController.getEditPhoto);
