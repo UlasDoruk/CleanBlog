@@ -8,11 +8,13 @@ const photoController = require('./Controllers/photoControllers')
 const pageController = require('./Controllers/pageControllers')
 const Photo = require('./model/Photo');
 
-mongoose.connect('mongodb://localhost/cleanblog-test-db', {
-  useNewUrlParser: true,
-  useUnifiedTopology: true,
-  /* useFindAndModify : false, */
-});
+mongoose.connect('mongodb+srv://ulasdoruk:hjex594uec@cluster0.esskl.mongodb.net/cleanblog-test-db?retryWrites=true&w=majority',
+  {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    /* useFindAndModify : false, */
+  }
+);
 
 app.set('view engine', 'ejs');
 
@@ -37,7 +39,7 @@ app.get('/about',pageController.getAboutPage);
 app.get('/add_post',pageController.getAddPhoto);
 app.get('/photos/edit/:id',pageController.getEditPhoto);
 
-port = 3000;
+port = process.env.PORT || 5000
 
 app.listen(port, () => {
   console.log(`Portumuz : ${port}`);
