@@ -44,7 +44,7 @@ exports.updatePhoto = async (req, res) => {
 
 exports.deletePhoto = async (req, res) => {
   const photo = await Photo.findOne({ _id: req.params.id });
-  let deleteImage = __dirname + '/../public/' + photo.image;
+  let deleteImage = __dirname + '/../public' + photo.image;
   fs.unlinkSync(deleteImage);
   await Photo.findByIdAndRemove(req.params.id);
   res.redirect('/index');
